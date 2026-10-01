@@ -29,6 +29,8 @@ portfolio/
 1. **이름·소개·이메일** → `index.html`에서 `홍길동`, `HONG`, `hello@example.com` 검색해서 수정
 2. **작업물** → `img/projects/`에 이미지 넣고, `js/projects.js`에서 제목·설명·이미지 경로 수정
    - 프로젝트를 늘리거나 줄이려면 `{ ... },` 블록을 복사/삭제
+   - `date: "2025-08"` → Archive 섹션의 **연도 → 월별** 보기가 이 값으로 자동 생성됩니다
+   - `featured: true` → 상단 Selected Work 카드에도 노출 / `false` → Archive에만 노출
 3. **프로필 사진** → `img/profile.jpg`로 넣고 `index.html`의 `img/profile.svg`를 `img/profile.jpg`로 변경
 4. **이력서** → `files/resume.pdf`를 내 파일로 교체
 5. **색상** → `css/style.css` 맨 위 `--accent` 값 변경

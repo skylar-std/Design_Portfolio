@@ -33,6 +33,7 @@
 
       <nav class="nav" id="nav">
         <a href="#work" class="nav__link">Work</a>
+        <a href="#archive" class="nav__link">Archive</a>
         <a href="#about" class="nav__link">About</a>
         <a href="#skills" class="nav__link">Skills</a>
         <a href="#contact" class="nav__link">Contact</a>
@@ -88,6 +89,30 @@
 
         <!-- 프로젝트 카드는 js/projects.js 데이터로 자동 생성됩니다 -->
         <ul class="work__grid" id="workGrid"></ul>
+      </div>
+    </section>
+
+    <!-- ===== Archive (연도 → 월별 보기) ===== -->
+    <section class="section archive" id="archive">
+      <div class="container">
+        <div class="section__head reveal">
+          <div>
+            <h2 class="section__title">Archive</h2>
+            <p class="archive__lead">연도를 고르고, 월을 눌러 그 달의 작업만 모아 보세요.</p>
+          </div>
+          <!-- 연도 버튼: projects.js의 date 값으로 자동 생성 -->
+          <div class="archive__years" id="archiveYears" role="tablist" aria-label="연도 선택"></div>
+        </div>
+
+        <!-- 1~12월 버튼 -->
+        <div class="archive__months reveal" id="archiveMonths" aria-label="월 선택"></div>
+
+        <div class="archive__summary">
+          <p id="archiveSummary" aria-live="polite"></p>
+          <button type="button" class="archive__reset" id="archiveReset" hidden>전체 월 보기 ↺</button>
+        </div>
+
+        <div class="archive__list" id="archiveList"></div>
       </div>
     </section>
 

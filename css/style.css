@@ -259,6 +259,143 @@ em {
   color: var(--ink-soft);
 }
 
+/* ===== Archive (연도 → 월별) ===== */
+.archive { padding-top: 40px; }
+.archive__lead { margin-top: 14px; font-size: 16px; color: var(--ink-soft); }
+
+.archive__years { display: flex; flex-wrap: wrap; gap: 4px 28px; }
+.archive__year {
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--line);
+  transition: color .25s;
+}
+.archive__year sup {
+  margin-left: 3px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  vertical-align: top;
+}
+.archive__year:hover { color: var(--ink-soft); }
+.archive__year.is-active { color: var(--ink); }
+.archive__year.is-active sup { color: var(--accent); }
+
+.archive__months {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+}
+.archive__mbtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 18px 0 14px;
+  border-left: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  transition: background .2s, color .2s;
+}
+.archive__mbtn:first-child { border-left: 0; }
+.archive__mbtn strong {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+.archive__dots { display: flex; gap: 3px; height: 6px; margin-top: 4px; }
+.archive__dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.archive__mbtn:disabled { cursor: default; color: var(--line); }
+.archive__mbtn:disabled strong { color: var(--line); }
+.archive__mbtn:not(:disabled):hover { background: var(--bg-alt); }
+.archive__mbtn.is-active,
+.archive__mbtn.is-active:not(:disabled):hover { background: var(--ink); color: rgba(244, 241, 234, .7); }
+.archive__mbtn.is-active strong { color: var(--bg); }
+
+.archive__summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 72px;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+.archive__summary strong { color: var(--ink); }
+.archive__reset {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.archive__reset:hover { text-decoration: underline; }
+.archive__reset[hidden] { display: none; }
+
+.archive__group {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+  animation: fadeUp .5s var(--ease) both;
+}
+.archive__group:last-child { border-bottom: 1px solid var(--line); }
+.archive__month { font-size: 15px; font-weight: 600; color: var(--ink-soft); }
+.archive__month em {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 56px;
+  line-height: .9;
+  color: var(--ink);
+}
+.archive__rows { display: grid; gap: 8px; }
+.archive__row {
+  display: grid;
+  grid-template-columns: 112px 1fr auto;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 12px;
+  text-align: left;
+  transition: background .25s;
+}
+.archive__row img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.archive__info { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.archive__title { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+.archive__sub { font-size: 14px; color: var(--ink-soft); }
+.archive__arrow {
+  display: grid;
+  place-items: center;
+  width: 44px; height: 44px;
+  margin-right: 8px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  transition: all .25s;
+}
+.archive__row:hover,
+.archive__row:focus-visible { background: var(--card); }
+.archive__row:hover .archive__arrow,
+.archive__row:focus-visible .archive__arrow {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: rotate(45deg);
+}
+
 /* ===== About ===== */
 .about { background: var(--bg-alt); }
 .about__inner {
@@ -438,6 +575,7 @@ em {
 
 /* ===== Keyframes ===== */
 @keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } }
 @keyframes pulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(255, 79, 31, .5); }
   50% { box-shadow: 0 0 0 8px rgba(255, 79, 31, 0); }

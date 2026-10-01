@@ -70,6 +70,21 @@
   .card__title { font-size: 19px; }
   .card__view { display: none; }
 
+  /* Archive */
+  .archive__months { grid-template-columns: repeat(6, 1fr); }
+  .archive__mbtn:nth-child(7) { border-left: 0; }
+  .archive__mbtn:nth-child(n+7) { border-top: 1px solid var(--line); }
+  .archive__mbtn { padding: 14px 0 12px; font-size: 11px; }
+  .archive__mbtn strong { font-size: 24px; }
+  .archive__summary { font-size: 14px; min-height: 60px; }
+  .archive__group { grid-template-columns: 1fr; gap: 12px; padding: 24px 0; }
+  .archive__month em { display: inline; font-size: 40px; margin: 0 10px 0 0; }
+  .archive__row { grid-template-columns: 80px 1fr; gap: 14px; padding: 8px 0; }
+  .archive__row:hover { background: none; }
+  .archive__title { font-size: 17px; }
+  .archive__sub { font-size: 13px; }
+  .archive__arrow { display: none; }
+
   /* About */
   .about__inner { grid-template-columns: 1fr; }
   .about__photo { max-width: 360px; }
