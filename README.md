@@ -6,18 +6,21 @@
 
 ```
 portfolio/
-├── index.html          # 메인 페이지
+├── index.html          # 메인: 표지 → About → Skills → 작업물 보러가기 → Contact
+├── works.html          # 작업물 페이지: Selected Work + Archive(연도→월별)
 ├── css/
 │   ├── reset.css       # 브라우저 기본 스타일 초기화
 │   ├── style.css       # 메인 스타일 (맨 위 :root 에서 색상/폰트 변경)
 │   └── responsive.css  # 태블릿·모바일 대응
 ├── js/
-│   ├── projects.js     # ⭐ 프로젝트 데이터 (여기만 고치면 작업물 카드가 바뀜)
-│   └── main.js         # 필터, 모달, 메뉴, 스크롤 애니메이션
+│   ├── projects.js     # ⭐ 프로젝트 데이터 (여기만 고치면 작업물이 전부 바뀜)
+│   ├── works.js        # 작업물 페이지 전용: 카드, 필터, 모달, Archive
+│   └── main.js         # 공통: 메뉴, 스크롤 효과, 메인 미리보기
 ├── img/
 │   ├── favicon.svg     # 브라우저 탭 아이콘
 │   ├── og-image.svg    # 링크 공유 미리보기 이미지
 │   ├── profile.svg     # 프로필 사진
+│   ├── icons/          # Skills 아이콘 (같은 파일명으로 교체 가능)
 │   └── projects/       # 작업물 이미지
 ├── files/
 │   └── resume.pdf      # 이력서
@@ -26,6 +29,8 @@ portfolio/
 
 ## ✏️ 내 정보로 바꾸기
 
+1. **경력·학력·자격증·수상** → `index.html`의 `records` 부분에서 `<li>` 블록을 복사/삭제해 수정
+1. **Skills 아이콘** → `img/icons/`에 같은 이름(예: `figma.svg`)으로 덮어쓰기. PNG로 바꾸면 `index.html`의 확장자도 변경
 1. **이름·소개·이메일** → `index.html`에서 `홍길동`, `HONG`, `hello@example.com` 검색해서 수정
 2. **작업물** → `img/projects/`에 이미지 넣고, `js/projects.js`에서 제목·설명·이미지 경로 수정
    - 프로젝트를 늘리거나 줄이려면 `{ ... },` 블록을 복사/삭제

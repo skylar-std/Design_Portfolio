@@ -32,10 +32,9 @@
       <a href="#top" class="logo">HONG<span>.</span></a>
 
       <nav class="nav" id="nav">
-        <a href="#work" class="nav__link">Work</a>
-        <a href="#archive" class="nav__link">Archive</a>
         <a href="#about" class="nav__link">About</a>
         <a href="#skills" class="nav__link">Skills</a>
+        <a href="works.html" class="nav__link">Projects</a>
         <a href="#contact" class="nav__link">Contact</a>
       </nav>
 
@@ -47,7 +46,7 @@
 
   <main id="top">
 
-    <!-- ===== Hero ===== -->
+    <!-- ===== 1. Hero (표지) ===== -->
     <section class="hero">
       <div class="container">
         <p class="hero__eyebrow reveal">Brand · UI/UX · Graphic Designer</p>
@@ -60,8 +59,8 @@
             안녕하세요, 사용자의 맥락을 읽고 브랜드의 목소리를 시각 언어로 옮기는<br class="pc-only" />
             디자이너 <strong>홍길동</strong>입니다.
           </p>
-          <a href="#work" class="btn btn--primary">
-            작업 보기
+          <a href="#about" class="btn btn--primary">
+            더 알아보기
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v12M8 14l5-5M8 14l-5-5" stroke="currentColor" stroke-width="1.6"/></svg>
           </a>
         </div>
@@ -74,95 +73,175 @@
       </div>
     </section>
 
-    <!-- ===== Work ===== -->
-    <section class="section work" id="work">
-      <div class="container">
-        <div class="section__head reveal">
-          <h2 class="section__title">Selected <em>Work</em></h2>
-          <div class="filter" id="filter" role="tablist">
-            <button class="filter__btn is-active" data-filter="all">All</button>
-            <button class="filter__btn" data-filter="branding">Branding</button>
-            <button class="filter__btn" data-filter="uiux">UI/UX</button>
-            <button class="filter__btn" data-filter="graphic">Graphic</button>
-          </div>
-        </div>
-
-        <!-- 프로젝트 카드는 js/projects.js 데이터로 자동 생성됩니다 -->
-        <ul class="work__grid" id="workGrid"></ul>
-      </div>
-    </section>
-
-    <!-- ===== Archive (연도 → 월별 보기) ===== -->
-    <section class="section archive" id="archive">
-      <div class="container">
-        <div class="section__head reveal">
-          <div>
-            <h2 class="section__title">Archive</h2>
-            <p class="archive__lead">연도를 고르고, 월을 눌러 그 달의 작업만 모아 보세요.</p>
-          </div>
-          <!-- 연도 버튼: projects.js의 date 값으로 자동 생성 -->
-          <div class="archive__years" id="archiveYears" role="tablist" aria-label="연도 선택"></div>
-        </div>
-
-        <!-- 1~12월 버튼 -->
-        <div class="archive__months reveal" id="archiveMonths" aria-label="월 선택"></div>
-
-        <div class="archive__summary">
-          <p id="archiveSummary" aria-live="polite"></p>
-          <button type="button" class="archive__reset" id="archiveReset" hidden>전체 월 보기 ↺</button>
-        </div>
-
-        <div class="archive__list" id="archiveList"></div>
-      </div>
-    </section>
-
-    <!-- ===== About ===== -->
+    <!-- ===== 2. About Me ===== -->
     <section class="section about" id="about">
-      <div class="container about__inner">
-        <div class="about__photo reveal">
-          <img src="img/profile.svg" alt="홍길동 프로필 사진" />
-        </div>
-        <div class="about__text reveal">
-          <h2 class="section__title">About <em>Me</em></h2>
-          <p>
-            시각디자인을 전공하고 3년간 에이전시와 스타트업에서 브랜드 아이덴티티와
-            디지털 프로덕트 디자인을 해왔습니다. 예쁜 것보다 <strong>맞는 것</strong>을 만드는 일에 관심이 많습니다.
-          </p>
-          <p>
-            리서치에서 출발해 콘셉트를 세우고, 시스템으로 확장하는 과정을 좋아합니다.
-          </p>
+      <div class="container">
+        <div class="about__inner">
+          <div class="about__photo reveal">
+            <img src="img/profile.svg" alt="홍길동 프로필 사진" />
+          </div>
+          <div class="about__text reveal">
+            <h2 class="section__title">About <em>Me</em></h2>
+            <p>
+              시각디자인을 전공하고 3년간 에이전시와 스타트업에서 브랜드 아이덴티티와
+              디지털 프로덕트 디자인을 해왔습니다. 예쁜 것보다 <strong>맞는 것</strong>을 만드는 일에 관심이 많습니다.
+            </p>
+            <p>
+              리서치에서 출발해 콘셉트를 세우고, 시스템으로 확장하는 과정을 좋아합니다.
+            </p>
 
-          <ul class="timeline">
-            <li><span class="timeline__year">2024 —</span><span>ABC 스튜디오 · 프로덕트 디자이너</span></li>
-            <li><span class="timeline__year">2022 — 24</span><span>XYZ 에이전시 · 브랜드 디자이너</span></li>
-            <li><span class="timeline__year">2018 — 22</span><span>OO대학교 시각디자인과 졸업</span></li>
-          </ul>
+            <dl class="about__facts">
+              <div><dt>Name</dt><dd>홍길동 · Hong Gildong</dd></div>
+              <div><dt>Birth</dt><dd>1999</dd></div>
+              <div><dt>Based in</dt><dd>Seoul, Korea</dd></div>
+              <div><dt>Email</dt><dd><a href="mailto:hello@example.com">hello@example.com</a></dd></div>
+            </dl>
+          </div>
+        </div>
+
+        <!-- 경력 · 학력 · 자격증 · 수상 : 항목은 <li> 블록을 복사/삭제해서 수정 -->
+        <div class="records">
+          <div class="records__block reveal">
+            <h3 class="records__title"><em>01</em> Experience <small>경력</small></h3>
+            <ul>
+              <li>
+                <span class="records__year">2024.03 — 현재</span>
+                <strong class="records__name">프로덕트 디자이너</strong>
+                <span class="records__org">ABC 스튜디오</span>
+              </li>
+              <li>
+                <span class="records__year">2022.03 — 2024.02</span>
+                <strong class="records__name">브랜드 디자이너</strong>
+                <span class="records__org">XYZ 에이전시</span>
+              </li>
+              <li>
+                <span class="records__year">2021.07 — 2021.12</span>
+                <strong class="records__name">디자인 인턴</strong>
+                <span class="records__org">DEF 디자인랩</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="records__block reveal">
+            <h3 class="records__title"><em>02</em> Education <small>학력 · 학위</small></h3>
+            <ul>
+              <li>
+                <span class="records__year">2022.02</span>
+                <strong class="records__name">시각디자인학과 학사 (BFA)</strong>
+                <span class="records__org">OO대학교 · 졸업</span>
+              </li>
+              <li>
+                <span class="records__year">2020.09 — 2021.02</span>
+                <strong class="records__name">교환학생 · Graphic Design</strong>
+                <span class="records__org">OO University</span>
+              </li>
+              <li>
+                <span class="records__year">2018.02</span>
+                <strong class="records__name">OO고등학교 졸업</strong>
+                <span class="records__org">시각디자인과</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="records__block reveal">
+            <h3 class="records__title"><em>03</em> Certificates <small>자격증</small></h3>
+            <ul>
+              <li>
+                <span class="records__year">2021.11</span>
+                <strong class="records__name">시각디자인산업기사</strong>
+                <span class="records__org">한국산업인력공단</span>
+              </li>
+              <li>
+                <span class="records__year">2020.06</span>
+                <strong class="records__name">GTQ 그래픽기술자격 1급</strong>
+                <span class="records__org">한국생산성본부</span>
+              </li>
+              <li>
+                <span class="records__year">2019.08</span>
+                <strong class="records__name">컴퓨터그래픽스운용기능사</strong>
+                <span class="records__org">한국산업인력공단</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="records__block reveal">
+            <h3 class="records__title"><em>04</em> Awards <small>수상</small></h3>
+            <ul>
+              <li>
+                <span class="records__year">2024.10</span>
+                <strong class="records__name">OO 디자인 어워드 브랜드 부문 입선</strong>
+                <span class="records__org">OO디자인진흥원</span>
+              </li>
+              <li>
+                <span class="records__year">2023.05</span>
+                <strong class="records__name">대학생 광고 공모전 은상</strong>
+                <span class="records__org">OO광고협회</span>
+              </li>
+              <li>
+                <span class="records__year">2021.12</span>
+                <strong class="records__name">졸업전시회 우수상</strong>
+                <span class="records__org">OO대학교</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== Skills ===== -->
+    <!-- ===== 3. Skills ===== -->
+    <!-- 아이콘은 img/icons/ 폴더. 같은 파일명으로 교체하면 바로 바뀝니다 -->
     <section class="section skills" id="skills">
       <div class="container">
         <h2 class="section__title reveal">Skills &amp; <em>Tools</em></h2>
         <div class="skills__grid">
           <div class="skill-card reveal">
             <h3>Design</h3>
-            <ul><li>Brand Identity</li><li>UI/UX Design</li><li>Editorial Design</li><li>Design System</li></ul>
+            <ul>
+              <li><span class="skill-icon"><img src="img/icons/brand-identity.svg" alt="" /></span>Brand Identity</li>
+              <li><span class="skill-icon"><img src="img/icons/ui-ux.svg" alt="" /></span>UI/UX Design</li>
+              <li><span class="skill-icon"><img src="img/icons/editorial.svg" alt="" /></span>Editorial Design</li>
+              <li><span class="skill-icon"><img src="img/icons/design-system.svg" alt="" /></span>Design System</li>
+            </ul>
           </div>
           <div class="skill-card reveal">
             <h3>Tools</h3>
-            <ul><li>Figma</li><li>Adobe Illustrator</li><li>Adobe Photoshop</li><li>Adobe InDesign</li></ul>
+            <ul>
+              <li><span class="skill-icon"><img src="img/icons/figma.svg" alt="" /></span>Figma</li>
+              <li><span class="skill-icon"><img src="img/icons/illustrator.svg" alt="" /></span>Adobe Illustrator</li>
+              <li><span class="skill-icon"><img src="img/icons/photoshop.svg" alt="" /></span>Adobe Photoshop</li>
+              <li><span class="skill-icon"><img src="img/icons/indesign.svg" alt="" /></span>Adobe InDesign</li>
+            </ul>
           </div>
           <div class="skill-card reveal">
             <h3>Etc.</h3>
-            <ul><li>After Effects</li><li>Blender (Basic)</li><li>HTML / CSS</li><li>Notion</li></ul>
+            <ul>
+              <li><span class="skill-icon"><img src="img/icons/after-effects.svg" alt="" /></span>After Effects</li>
+              <li><span class="skill-icon"><img src="img/icons/blender.svg" alt="" /></span>Blender (Basic)</li>
+              <li><span class="skill-icon"><img src="img/icons/html-css.svg" alt="" /></span>HTML / CSS</li>
+              <li><span class="skill-icon"><img src="img/icons/notion.svg" alt="" /></span>Notion</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== Contact ===== -->
+    <!-- ===== 4. 작업물 보러가기 ===== -->
+    <section class="section projects-cta">
+      <div class="container">
+        <a href="works.html" class="cta reveal">
+          <div class="cta__text">
+            <p class="cta__eyebrow">Selected Work · Archive</p>
+            <h2 class="cta__title">작업물<br /><em>보러가기</em></h2>
+            <p class="cta__meta" id="projectCount"></p>
+          </div>
+          <!-- 대표작 썸네일 3장: js/projects.js에서 자동으로 채워짐 -->
+          <div class="cta__stack" id="projectPreview" aria-hidden="true"></div>
+          <span class="cta__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== 5. Contact ===== -->
     <section class="section contact" id="contact">
       <div class="container">
         <p class="contact__eyebrow reveal">Let's work together</p>
@@ -183,22 +262,6 @@
       <a href="#top" class="footer__top">Back to top ↑</a>
     </div>
   </footer>
-
-  <!-- ===== Project Modal ===== -->
-  <div class="modal" id="modal" aria-hidden="true">
-    <div class="modal__backdrop" data-close></div>
-    <article class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal__close" data-close aria-label="닫기">✕</button>
-      <img class="modal__img" id="modalImg" src="" alt="" />
-      <div class="modal__body">
-        <p class="modal__meta" id="modalMeta"></p>
-        <h3 class="modal__title" id="modalTitle"></h3>
-        <p class="modal__desc" id="modalDesc"></p>
-        <ul class="modal__tags" id="modalTags"></ul>
-        <a class="btn btn--primary modal__link" id="modalLink" href="#" target="_blank" rel="noopener">자세히 보기 ↗</a>
-      </div>
-    </article>
-  </div>
 
   <!-- 스크립트 -->
   <script src="js/projects.js"></script>

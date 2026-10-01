@@ -5,6 +5,10 @@
   .section { padding: 110px 0; }
   .about__inner { gap: 48px; }
   .skills__grid { grid-template-columns: repeat(2, 1fr); }
+  .records { grid-template-columns: repeat(2, 1fr); gap: 48px 32px; }
+  .cta { padding: 48px; }
+  .cta__stack { right: 48px; top: 48px; }
+  .cta__stack img { width: 140px; }
 }
 
 /* ===== Mobile (≤ 768px) ===== */
@@ -90,6 +94,26 @@
   .about__photo { max-width: 360px; }
   .about__text p { font-size: 16px; }
   .timeline li { grid-template-columns: 96px 1fr; font-size: 15px; }
+  .about__facts { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .about__facts dd { font-size: 15px; word-break: break-all; }
+  .records { grid-template-columns: 1fr; gap: 40px; margin-top: 64px; }
+
+  /* 작업물 보러가기 */
+  .cta {
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 0;
+    padding: 36px 24px 28px;
+    border-radius: 20px;
+  }
+  .cta__stack { position: static; order: -1; margin: 0 0 8px 40px; }
+  .cta__stack img { width: 104px; margin-left: -40px; border-width: 3px; }
+  .cta__arrow { width: 64px; height: 64px; font-size: 26px; align-self: flex-end; margin-top: -40px; }
+
+  /* works.html */
+  .page-head { padding-top: calc(var(--header-h) + 56px); }
+  .page-head__desc { font-size: 16px; }
+  .page-head + .work { padding-top: 64px; }
 
   /* Skills */
   .skills__grid { grid-template-columns: 1fr; }
