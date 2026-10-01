@@ -10,8 +10,8 @@ const RESUME = {
 
   /* 학력 (고정) */
   education: [
-    { start: "2018.03", end: "2022.02", school: "OO대학교", major: "시각디자인학과 학사 (BFA)", status: "졸업" },
-    { start: "2015.03", end: "2018.02", school: "OO고등학교", major: "시각디자인과", status: "졸업" }
+    { start: "2018.03", end: "2024.02", school: "OO대학교", major: "컴퓨터공학부, 정보통신학부(복수전공)", status: "졸업" },
+    { start: "2015.03", end: "2018.01", school: "OO고등학교", major: "", status: "졸업" }
   ],
 
   /* 경력 */
