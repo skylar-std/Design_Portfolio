@@ -6,15 +6,16 @@
 
 ```
 portfolio/
-├── index.html          # 메인: 표지 → About → Skills → 작업물 보러가기 → Contact
-├── works.html          # 작업물 페이지: Selected Work + Archive(연도→월별)
+├── index.html          # 메인: 표지 → Profile → Credentials → Skills → 작업물 보러가기 → 연락처
+├── works.html          # 작업물 페이지: 연도 → 월별 Archive
 ├── css/
 │   ├── reset.css       # 브라우저 기본 스타일 초기화
 │   ├── style.css       # 메인 스타일 (맨 위 :root 에서 색상/폰트 변경)
 │   └── responsive.css  # 태블릿·모바일 대응
 ├── js/
 │   ├── projects.js     # ⭐ 프로젝트 데이터 (여기만 고치면 작업물이 전부 바뀜)
-│   ├── works.js        # 작업물 페이지 전용: 카드, 필터, 모달, Archive
+│   ├── resume.js       # ⭐ 이력 데이터: 학력·경력·교육·수상·자격증
+│   ├── works.js        # 작업물 페이지 전용: Archive, 상세 모달
 │   └── main.js         # 공통: 메뉴, 스크롤 효과, 메인 미리보기
 ├── img/
 │   ├── favicon.svg     # 브라우저 탭 아이콘
@@ -29,13 +30,16 @@ portfolio/
 
 ## ✏️ 내 정보로 바꾸기
 
-1. **경력·학력·자격증·수상** → `index.html`의 `records` 부분에서 `<li>` 블록을 복사/삭제해 수정
-1. **Skills 아이콘** → `img/icons/`에 같은 이름(예: `figma.svg`)으로 덮어쓰기. PNG로 바꾸면 `index.html`의 확장자도 변경
+1. **학력·경력·교육·수상·자격증** → `js/resume.js`에 한 줄씩 추가
+   - 순서 상관없이 **최신순 자동 정렬**, 자격증은 **연도별 자동 묶음**, 개수도 자동
+   - 경력·교육 4개, 자격증 3개 연도를 넘으면 자동으로 **더보기**로 접힘 (`js/main.js` 맨 위 `LIMITS`에서 변경)
+   - 재직 중·수강 중이면 `end: ""`
+1. **올린 뒤 화면이 안 바뀌면** → HTML의 `?v=20261001e` 숫자를 바꿔서 다시 업로드
 1. **이름·소개·이메일** → `index.html`에서 `홍길동`, `HONG`, `hello@example.com` 검색해서 수정
 2. **작업물** → `img/projects/`에 이미지 넣고, `js/projects.js`에서 제목·설명·이미지 경로 수정
    - 프로젝트를 늘리거나 줄이려면 `{ ... },` 블록을 복사/삭제
    - `date: "2025-08"` → Archive 섹션의 **연도 → 월별** 보기가 이 값으로 자동 생성됩니다
-   - `featured: true` → 상단 Selected Work 카드에도 노출 / `false` → Archive에만 노출
+   - `featured: true` → 메인 '작업물 보러가기' 배너 썸네일에 사용 (최신 3개)
 3. **프로필 사진** → `img/profile.jpg`로 넣고 `index.html`의 `img/profile.svg`를 `img/profile.jpg`로 변경
 4. **이력서** → `files/resume.pdf`를 내 파일로 교체
 5. **색상** → `css/style.css` 맨 위 `--accent` 값 변경

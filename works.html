@@ -19,9 +19,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 
   <!-- 스타일 -->
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/reset.css?v=20261001e" />
+  <link rel="stylesheet" href="css/style.css?v=20261001e" />
+  <link rel="stylesheet" href="css/responsive.css?v=20261001e" />
 </head>
 <body>
 
@@ -31,10 +31,8 @@
       <a href="index.html" class="logo">HONG<span>.</span></a>
 
       <nav class="nav" id="nav">
-        <a href="index.html#about" class="nav__link">About</a>
-        <a href="index.html#skills" class="nav__link">Skills</a>
+        <a href="index.html#profile" class="nav__link">About</a>
         <a href="works.html" class="nav__link is-current" aria-current="page">Projects</a>
-        <a href="index.html#contact" class="nav__link">Contact</a>
       </nav>
 
       <button class="menu-btn" id="menuBtn" aria-label="메뉴 열기" aria-expanded="false">
@@ -45,41 +43,15 @@
 
   <main id="top">
 
-    <!-- ===== Page head ===== -->
-    <section class="page-head">
-      <div class="container">
-        <a href="index.html" class="page-head__back reveal">← Home</a>
-        <h1 class="page-head__title reveal">Pro<em>jects</em></h1>
-        <p class="page-head__desc reveal">대표 작업과 전체 작업 기록을 모았습니다. 카드를 누르면 자세한 내용을 볼 수 있어요.</p>
-      </div>
-    </section>
-
-    <!-- ===== Selected Work ===== -->
-    <section class="section work" id="work">
-      <div class="container">
-        <div class="section__head reveal">
-          <h2 class="section__title">Selected <em>Work</em></h2>
-          <div class="filter" id="filter" role="tablist">
-            <button class="filter__btn is-active" data-filter="all">All</button>
-            <button class="filter__btn" data-filter="branding">Branding</button>
-            <button class="filter__btn" data-filter="uiux">UI/UX</button>
-            <button class="filter__btn" data-filter="graphic">Graphic</button>
-          </div>
-        </div>
-
-        <!-- 프로젝트 카드는 js/projects.js 데이터로 자동 생성됩니다 -->
-        <ul class="work__grid" id="workGrid"></ul>
-      </div>
-    </section>
-
-    <!-- ===== Archive (연도 → 월별 보기) ===== -->
-    <section class="section archive" id="archive">
+    <!-- ===== Projects (Archive) : 연도 → 월별 보기 ===== -->
+    <section class="section archive archive--page" id="archive">
       <div class="container">
         <div class="section__head reveal">
           <div>
-            <h2 class="section__title">Archive</h2>
-            <p class="archive__lead">연도를 고르고, 월을 눌러 그 달의 작업만 모아 보세요.</p>
+            <h1 class="page-title">Projects</h1>
+            <p class="archive__lead">연도와 월을 골라 작업을 살펴보세요. 항목을 누르면 자세한 내용이 열려요.</p>
           </div>
+          <!-- 연도 버튼: projects.js의 date 값으로 자동 생성 -->
           <div class="archive__years" id="archiveYears" role="tablist" aria-label="연도 선택"></div>
         </div>
 
@@ -119,8 +91,8 @@
   </div>
 
   <!-- 스크립트 (순서 중요: 데이터 → 작업물 페이지 → 공통) -->
-  <script src="js/projects.js"></script>
-  <script src="js/works.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/projects.js?v=20261001e"></script>
+  <script src="js/works.js?v=20261001e"></script>
+  <script src="js/main.js?v=20261001e"></script>
 </body>
 </html>

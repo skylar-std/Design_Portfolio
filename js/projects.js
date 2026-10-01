@@ -1,8 +1,8 @@
 /* =========================================
    프로젝트 데이터
-   - 여기만 수정하면 Work 카드, Archive(연도·월별), 상세 모달이 모두 자동으로 바뀝니다.
+   - 여기만 수정하면 작업물 페이지(연도·월별), 상세 모달, 메인 미리보기가 모두 자동으로 바뀝니다.
    - date: "YYYY-MM" 형식 (예: "2025-08")  → Archive의 연도/월 버튼이 이 값으로 만들어짐
-   - featured: true  → 상단 Selected Work 카드에도 노출 / false → Archive에만 노출
+   - featured: true  → 메인 '작업물 보러가기' 썸네일 후보 (최신 3개 사용) / false → 작업물 페이지에만
    - category: "branding" | "uiux" | "graphic"  (index.html 필터 버튼의 data-filter와 동일해야 함)
    - thumb: 카드 썸네일 / image: 모달 큰 이미지 (img/projects/ 폴더에 넣기)
    - link: 비핸스·노션 등 상세 페이지 주소 (없으면 "" → 버튼 숨김)

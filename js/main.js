@@ -9,6 +9,125 @@
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
+  /* 처음에 보여줄 개수 (넘으면 '더보기'로 접힘) */
+  const LIMITS = { experience: 4, training: 4, certYears: 3 };
+
+  /* ---------- 0. 이력 렌더링 (js/resume.js) ---------- */
+  const NOW = (() => { const d = new Date(); return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}`; })();
+  const latestFirst = (k) => (a, b) => (b[k] || NOW).localeCompare(a[k] || NOW);
+  const period = (s, e) => `${s} — ${e || "현재"}`;
+
+  // 기간 계산: "2022.03" ~ "2024.02" → "2년"
+  function duration(s, e) {
+    const [sy, sm] = s.split(".").map(Number);
+    const [ey, em] = (e || NOW).split(".").map(Number);
+    const total = (ey - sy) * 12 + (em - sm) + 1;
+    const y = Math.floor(total / 12), m = total % 12;
+    return [y ? `${y}년` : "", m ? `${m}개월` : ""].filter(Boolean).join(" ") || "1개월";
+  }
+
+  // 일정 개수 이상이면 접고 '더보기' 버튼 연결
+  function collapse(listEl, btnEl, limit, label) {
+    if (!listEl || !btnEl) return;
+    const items = [...listEl.children];
+    const hidden = items.slice(limit);
+    if (!hidden.length) { btnEl.hidden = true; return; }
+    const count = hidden.reduce((n, el) => n + Number(el.dataset.count || 1), 0);
+    let open = false;
+    const set = () => {
+      hidden.forEach((el) => { el.hidden = !open; });
+      btnEl.textContent = open ? "접기 ↑" : `${label} ${count}개 더보기 ↓`;
+      btnEl.setAttribute("aria-expanded", String(open));
+    };
+    btnEl.hidden = false;
+    btnEl.addEventListener("click", () => { open = !open; set(); });
+    set();
+  }
+
+  function renderResume() {
+    if (typeof RESUME === "undefined") return;
+    const R = RESUME;
+    const put = (id, html) => { const el = $(id); if (el) el.innerHTML = html; };
+    const text = (id, t) => { const el = $(id); if (el) el.textContent = t; };
+
+    // 학력
+    put("#eduList", [...(R.education || [])].sort(latestFirst("start")).map((e) => `
+      <li class="edu__row">
+        <span class="edu__date">${e.end || e.start}</span>
+        <span class="edu__what"><strong>${e.school}</strong> ${e.major}${e.status ? ` · ${e.status}` : ""}</span>
+      </li>`).join(""));
+
+    // 경력
+    const exp = [...(R.experience || [])].sort(latestFirst("start"));
+    text("#expCount", exp.length);
+    put("#expList", exp.map((x) => `
+      <li class="career__item${x.end ? "" : " is-now"}">
+        <div class="career__meta">
+          <span class="career__date">${period(x.start, x.end)}</span>
+          <span class="career__dur">${x.end ? duration(x.start, x.end) : "재직 중"}</span>
+        </div>
+        <strong class="career__name">${x.company}</strong>
+        <span class="career__sub">${x.role}</span>
+        ${x.desc ? `<p class="career__desc">${x.desc}</p>` : ""}
+      </li>`).join(""));
+    collapse($("#expList"), $("#expMore"), LIMITS.experience, "경력");
+
+    // 교육
+    const tr = [...(R.training || [])].sort(latestFirst("start"));
+    text("#trainCount", tr.length);
+    put("#trainList", tr.map((x) => `
+      <li class="career__item${x.end ? "" : " is-now"}">
+        <div class="career__meta">
+          <span class="career__date">${period(x.start, x.end)}</span>
+          ${x.end ? "" : `<span class="career__dur">수강 중</span>`}
+        </div>
+        <strong class="career__name">${x.title}</strong>
+        <span class="career__sub">${x.org}</span>
+        ${x.desc ? `<p class="career__desc">${x.desc}</p>` : ""}
+      </li>`).join(""));
+    collapse($("#trainList"), $("#trainMore"), LIMITS.training, "교육");
+
+    // 수상
+    const aw = [...(R.awards || [])].sort(latestFirst("date"));
+    const awardEl = $("#awardList");
+    if (awardEl) awardEl.classList.toggle("is-multi", aw.length > 1);
+    put("#awardList", aw.map((a) => `
+      <article class="award reveal">
+        <div>
+          <p class="award__label">Award</p>
+          <h3 class="award__name">${a.title}</h3>
+          ${a.desc ? `<p class="award__desc">${a.desc}</p>` : ""}
+        </div>
+        <div class="award__side">
+          <span class="award__year">${a.date.slice(0, 4)}</span>
+          <span class="award__org">${a.org}</span>
+        </div>
+      </article>`).join(""));
+
+    // 자격증: 연도별 묶음
+    const certs = [...(R.certificates || [])].sort(latestFirst("date"));
+    text("#certCount", certs.length);
+    const byYear = [];
+    certs.forEach((c) => {
+      const y = c.date.slice(0, 4);
+      const last = byYear[byYear.length - 1];
+      if (last && last.y === y) last.items.push(c); else byYear.push({ y, items: [c] });
+    });
+    put("#certList", byYear.map((g) => `
+      <div class="cert-year" data-count="${g.items.length}">
+        <p class="cert-year__label"><em>${g.y}</em><span>${g.items.length}</span></p>
+        <ul class="cert-year__list">
+          ${g.items.map((c) => `
+            <li class="cert-row">
+              <strong class="cert-row__name">${c.name}</strong>
+              <span class="cert-row__org">${c.org}</span>
+              <span class="cert-row__month">${c.date.slice(5)}월</span>
+            </li>`).join("")}
+        </ul>
+      </div>`).join(""));
+    collapse($("#certList"), $("#certMore"), LIMITS.certYears, "이전 자격증");
+  }
+
   /* ---------- 1. 메인: 작업물 보러가기 미리보기 ---------- */
   function renderPreview() {
     const stack = $("#projectPreview");
@@ -18,7 +137,7 @@
       .filter((p) => p.featured !== false)
       .sort((a, b) => b.date.localeCompare(a.date))
       .slice(0, 3);
-    stack.innerHTML = featured.map((p) => `<img src="${p.thumb}" alt="" loading="lazy" />`).join("");
+    stack.innerHTML = featured.map((p) => `<img src="${p.thumb}" alt="" />`).join("");
 
     const count = $("#projectCount");
     if (count && PROJECTS.length) {
@@ -87,17 +206,63 @@
     sections.forEach((s) => io.observe(s));
   }
 
-  /* ---------- 6. 푸터 연도 ---------- */
+  /* ---------- 6. 오른쪽 섹션 이동 바 ---------- */
+  function initDots() {
+    const dots = $("#dots");
+    if (!dots) return;
+    const items = $$(".dots__item", dots);
+    const fill = $("#dotsFill");
+    const sections = items.map((a) => $(a.getAttribute("href")));
+    if (sections.some((s) => !s)) return;
+
+    let ticking = false;
+    function update() {
+      ticking = false;
+      const vh = window.innerHeight;
+      const probe = window.scrollY + vh * 0.4;          // 화면 위쪽 40% 지점 기준
+      const first = sections[0];
+      const last = sections[sections.length - 1];
+      const start = first.offsetTop - vh * 0.5;
+      const end = last.offsetTop + last.offsetHeight - vh * 0.4;
+
+      // Profile ~ Projects 구간에서만 보이기 (표지·Contact에서는 숨김)
+      dots.classList.toggle("is-visible", window.scrollY > start && window.scrollY < end);
+
+      let active = 0;
+      sections.forEach((s, i) => { if (s.offsetTop <= probe) active = i; });
+      items.forEach((a, i) => {
+        a.classList.toggle("is-active", i === active);
+        a.classList.toggle("is-passed", i < active);
+        if (i === active) a.setAttribute("aria-current", "true");
+        else a.removeAttribute("aria-current");
+      });
+
+      // 진행 막대: 첫 원 중심 → 현재 원 중심
+      if (fill) {
+        const c = (el) => el.offsetTop + el.offsetHeight / 2;
+        fill.style.height = `${c(items[active]) - c(items[0])}px`;
+      }
+    }
+
+    const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    update();
+  }
+
+  /* ---------- 8. 푸터 연도 ---------- */
   function initYear() {
     const y = $("#year");
     if (y) y.textContent = new Date().getFullYear();
   }
 
   /* ---------- Init ---------- */
+  renderResume();
   renderPreview();
   initHeader();
   initMenu();
   initReveal();
   initActiveNav();
+  initDots();
   initYear();
 })();

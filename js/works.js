@@ -1,6 +1,6 @@
 /* =========================================
    works.html 전용 스크립트
-   - Selected Work 카드 / 카테고리 필터 / 상세 모달 / Archive(연도→월별)
+   - Archive(연도→월별) 목록 / 상세 모달
    ========================================= */
 (function () {
   "use strict";
@@ -16,52 +16,6 @@
   const pad = (n) => String(n).padStart(2, "0");
   const fmtDate = (d) => d.replace("-", ".");            // "2025-08" → "2025.08"
   const byDateDesc = (a, b) => b.date.localeCompare(a.date);
-
-  /* ---------- 1. Selected Work 카드 (featured만) ---------- */
-  const grid = $("#workGrid");
-
-  function renderProjects() {
-    if (!grid) return;
-    const featured = PROJECTS.filter((p) => p.featured !== false).sort(byDateDesc);
-
-    grid.innerHTML = featured.map((p) => `
-      <li class="work__item reveal" data-category="${p.category}">
-        <button type="button" class="card" data-id="${p.id}" aria-label="${p.title} 자세히 보기">
-          <div class="card__thumb">
-            <img src="${p.thumb}" alt="${p.title} 썸네일" loading="lazy" />
-            <span class="card__view">View</span>
-          </div>
-          <div class="card__info">
-            <h3 class="card__title">${p.title}</h3>
-            <span class="card__meta">${fmtDate(p.date)}</span>
-          </div>
-          <p class="card__cat">${p.categoryLabel} — ${p.role}</p>
-        </button>
-      </li>
-    `).join("");
-
-    grid.addEventListener("click", (e) => {
-      const card = e.target.closest(".card");
-      if (card) openModal(card.dataset.id);
-    });
-  }
-
-  /* ---------- 2. 카테고리 필터 ---------- */
-  function initFilter() {
-    const buttons = $$(".filter__btn");
-    buttons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const filter = btn.dataset.filter;
-        buttons.forEach((b) => b.classList.toggle("is-active", b === btn));
-
-        $$(".work__item").forEach((item) => {
-          const show = filter === "all" || item.dataset.category === filter;
-          item.classList.toggle("is-hidden", !show);
-          if (show) item.classList.add("is-visible");
-        });
-      });
-    });
-  }
 
   /* ---------- 3. 상세 모달 ---------- */
   const modal = $("#modal");
@@ -211,8 +165,6 @@
   }
 
   /* ---------- Init (main.js보다 먼저 실행되어야 스크롤 효과가 적용됨) ---------- */
-  renderProjects();
-  initFilter();
   initModal();
   initArchive();
 })();

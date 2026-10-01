@@ -740,3 +740,325 @@ em {
   0%, 100% { box-shadow: 0 0 0 0 rgba(255, 79, 31, .5); }
   50% { box-shadow: 0 0 0 8px rgba(255, 79, 31, 0); }
 }
+
+/* =========================================
+   v3 — 메인 구조 개편 (Profile / Credentials / Skills / Projects)
+   ========================================= */
+.section__num {
+  margin-bottom: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.about .section__num { margin-bottom: 40px; }
+
+/* 섹션 배경 번갈아 */
+.credentials { background: var(--bg); }
+.skills { background: var(--bg-alt); }
+.projects-cta { padding-top: 140px; }
+
+/* ----- 경력·학력·교육 연표 ----- */
+.history { margin-top: 110px; }
+.history__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--ink);
+}
+.history__title { font-size: clamp(26px, 3vw, 36px); font-weight: 700; letter-spacing: -0.03em; }
+.history__legend { display: flex; gap: 6px; }
+.history__row {
+  display: grid;
+  grid-template-columns: 190px 64px minmax(0, 1fr) minmax(0, .8fr);
+  align-items: center;
+  gap: 24px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+  transition: background .25s, padding .25s;
+}
+.history__row:hover { background: rgba(255, 255, 255, .5); padding-left: 12px; padding-right: 12px; }
+.history__date { font-family: var(--font-serif); font-size: 19px; font-style: italic; color: var(--ink-soft); }
+.history__what { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px; color: var(--ink-soft); }
+.history__what strong { font-size: 18px; font-weight: 700; color: var(--ink); }
+.history__note { font-size: 14px; color: var(--ink-soft); text-align: right; }
+
+.badge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.badge--work { background: var(--ink); color: var(--bg); }
+.badge--edu { border-color: var(--ink); color: var(--ink); }
+.badge--course { background: rgba(255, 79, 31, .12); color: var(--accent); }
+
+/* ----- 수상 ----- */
+.awards { display: grid; gap: 16px; margin-top: 56px; }
+.award {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  padding: 48px 56px;
+  border-radius: 24px;
+  background: var(--ink);
+  color: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+.award::after {
+  content: "✦";
+  position: absolute;
+  top: -40px; right: 40px;
+  font-size: 220px;
+  line-height: 1;
+  color: var(--accent);
+  opacity: .14;
+  pointer-events: none;
+}
+.award__label {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-style: italic;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.award__name { font-size: clamp(28px, 3.6vw, 48px); font-weight: 700; letter-spacing: -0.035em; line-height: 1.2; }
+.award__desc { margin-top: 16px; font-size: 15px; color: rgba(244, 241, 234, .65); }
+.award__side { display: flex; flex-direction: column; align-items: flex-end; text-align: right; position: relative; z-index: 1; }
+.award__year { font-family: var(--font-serif); font-size: 88px; font-style: italic; line-height: 1; }
+.award__org { margin-top: 8px; font-size: 14px; color: rgba(244, 241, 234, .65); }
+
+/* ----- 자격증 ----- */
+.certs { margin-top: 80px; }
+.certs__head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--ink);
+}
+.certs__title { font-size: clamp(26px, 3vw, 36px); font-weight: 700; letter-spacing: -0.03em; }
+.certs__count { font-family: var(--font-serif); font-size: 28px; font-style: italic; color: var(--accent); }
+.certs__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  counter-reset: cert;
+}
+.cert {
+  counter-increment: cert;
+  display: flex;
+  flex-direction: column;
+  min-height: 168px;
+  padding: 24px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: transform .35s var(--ease), border-color .3s;
+}
+.cert::before {
+  content: counter(cert, decimal-leading-zero);
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.cert:hover { transform: translateY(-4px); border-color: var(--ink); }
+.cert__name { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.35; }
+.cert__org { margin-top: 4px; font-size: 14px; color: var(--ink-soft); }
+.cert__date { margin-top: auto; padding-top: 16px; font-size: 13px; font-weight: 600; color: var(--ink-soft); }
+
+/* ----- 오른쪽 섹션 이동 바 ----- */
+.dots {
+  position: fixed;
+  top: 50%;
+  right: 32px;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  transform: translateY(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .4s, visibility .4s;
+}
+.dots.is-visible { opacity: 1; visibility: visible; }
+.dots::before,
+.dots__fill {
+  content: "";
+  position: absolute;
+  top: 7px;
+  right: 6px;
+  width: 2px;
+  border-radius: 2px;
+}
+.dots::before { bottom: 7px; background: var(--line); }
+.dots__fill { height: 0; background: var(--accent); transition: height .4s var(--ease); }
+.dots__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+.dots__item i {
+  position: relative;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--line);
+  transition: all .3s var(--ease);
+}
+.dots__item:hover i { border-color: var(--ink); }
+.dots__item.is-passed i { border-color: var(--accent); }
+.dots__item.is-active i { background: var(--accent); border-color: var(--accent); transform: scale(1.3); box-shadow: 0 0 0 5px rgba(255, 79, 31, .15); }
+.dots__label {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--bg);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(8px);
+  pointer-events: none;
+  transition: opacity .25s, transform .25s var(--ease);
+}
+.dots__item:hover .dots__label,
+.dots__item:focus-visible .dots__label { opacity: 1; transform: none; }
+
+/* =========================================
+   v4 — 늘어나는 이력 대응 (학력 / 경력 / 교육 / 수상 / 자격증)
+   ========================================= */
+
+/* 학력 (기본 정보 아래, 고정 2줄) */
+.edu { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); }
+.edu__label {
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.edu__row { display: grid; grid-template-columns: 80px 1fr; gap: 12px; padding: 6px 0; font-size: 15px; }
+.edu__date { font-family: var(--font-serif); font-size: 17px; font-style: italic; color: var(--accent); }
+.edu__what { color: var(--ink-soft); }
+.edu__what strong { color: var(--ink); font-weight: 700; margin-right: 4px; }
+
+/* 경력 · 교육 2열 */
+.career {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  margin-top: 110px;
+  align-items: start;
+}
+.career__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--ink);
+}
+.career__title { font-size: clamp(24px, 2.6vw, 32px); font-weight: 700; letter-spacing: -0.03em; }
+.career__title small { margin-left: 6px; font-size: 14px; font-weight: 500; letter-spacing: 0; color: var(--ink-soft); }
+.career__count { font-family: var(--font-serif); font-size: 30px; font-style: italic; color: var(--accent); }
+.career__item {
+  position: relative;
+  padding: 24px 0 24px 24px;
+  border-bottom: 1px solid var(--line);
+}
+.career__item::before {               /* 왼쪽 타임라인 점 */
+  content: "";
+  position: absolute;
+  left: 0; top: 31px;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  border: 2px solid var(--ink-soft);
+  background: var(--bg-alt);
+}
+.career__item.is-now::before { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 0 4px rgba(255, 79, 31, .15); }
+.career__meta { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.career__date { font-family: var(--font-serif); font-size: 18px; font-style: italic; color: var(--ink-soft); }
+.career__dur {
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.is-now .career__dur { border-color: var(--accent); color: var(--accent); }
+.career__name { display: block; font-size: 19px; font-weight: 700; letter-spacing: -0.02em; }
+.career__sub { display: block; margin-top: 2px; font-size: 15px; color: var(--ink-soft); }
+.career__desc { margin-top: 8px; font-size: 14px; color: var(--ink-soft); }
+
+.more-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  transition: all .25s;
+}
+.more-btn:hover { border-color: var(--ink); color: var(--ink); }
+.more-btn[hidden] { display: none; }
+
+/* 수상: 여러 개가 되면 2열 */
+.awards.is-multi { grid-template-columns: repeat(2, 1fr); }
+.awards.is-multi .award { padding: 40px; flex-direction: column; align-items: flex-start; }
+.awards.is-multi .award__name { font-size: clamp(22px, 2.4vw, 30px); }
+.awards.is-multi .award__side { flex-direction: row; align-items: baseline; gap: 12px; }
+.awards.is-multi .award__year { font-size: 56px; }
+
+/* 자격증: 연도별 목록 */
+.certs__head { margin-bottom: 0; }
+.cert-year {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 24px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--line);
+  animation: fadeUp .5s var(--ease) both;
+}
+.cert-year__label { display: flex; align-items: flex-start; gap: 6px; }
+.cert-year__label em { font-size: 48px; line-height: .9; }
+.cert-year__label span { font-size: 13px; font-weight: 700; color: var(--accent); }
+.cert-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 220px) 52px;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.cert-row:first-child { padding-top: 4px; }
+.cert-row:last-child { border-bottom: 0; padding-bottom: 0; }
+.cert-row__name { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; }
+.cert-row__org { font-size: 14px; color: var(--ink-soft); }
+.cert-row__month { font-family: var(--font-serif); font-size: 17px; font-style: italic; color: var(--accent); text-align: right; }
+
+/* ===== v5 — 작업물 페이지 (Archive 단독) ===== */
+.archive--page { padding-top: calc(var(--header-h) + 96px); min-height: 100vh; }
+.page-title {
+  font-size: clamp(56px, 8vw, 112px);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: .95;
+}
