@@ -166,5 +166,6 @@
 
   /* ---------- Init (main.js보다 먼저 실행되어야 스크롤 효과가 적용됨) ---------- */
   initModal();
-  initArchive();
+  // PROJECTS는 이제 Supabase에서 비동기로 불러오므로, 데이터가 준비된 뒤에 그려요.
+  (window.PROJECTS_READY || Promise.resolve()).then(initArchive);
 })();

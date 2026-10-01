@@ -258,11 +258,12 @@
 
   /* ---------- Init ---------- */
   renderResume();
-  renderPreview();
   initHeader();
   initMenu();
   initReveal();
   initActiveNav();
   initDots();
   initYear();
+  // PROJECTS는 이제 Supabase에서 비동기로 불러오므로, 데이터가 준비된 뒤에 미리보기를 그려요.
+  (window.PROJECTS_READY || Promise.resolve()).then(renderPreview);
 })();
