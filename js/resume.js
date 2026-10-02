@@ -34,6 +34,7 @@ const RESUME = {
 
   /* 자격증 (연도별로 자동 묶음) */
   certificates: [
+    { date: "2026.10", name: "전자출판기능사", org: "한국산업인력공단" },
     { date: "2022.08", name: "ACP InDesign", org: "Adobe" },
     { date: "2022.04", name: "ACP Photoshop", org: "Adobe" },
     { date: "2022.04", name: "ACP Illustrator", org: "Adobe" },
